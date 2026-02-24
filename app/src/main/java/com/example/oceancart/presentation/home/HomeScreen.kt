@@ -1,4 +1,4 @@
-package com.example.oceancart.presentation.authentication
+package com.example.oceancart.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,9 +14,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 
-fun LoginScreen(
-    onLoginSuccess: () -> Unit,
-    onNavigateToRegister: () -> Unit
+fun HomeScreen(
+    onLogout: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -25,22 +23,14 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Login")
+        Text("Home")
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = onLoginSuccess
+            onClick = onLogout
         ) {
-            Text("Login")
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        TextButton(
-            onNavigateToRegister
-        ) {
-            Text("Belum punya akun? Register")
+            Text("Logout")
         }
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -38,7 +39,16 @@ android {
 }
 
 dependencies {
-    implementation("androidx.navigation:navigation-compose:2.9.7")
+
+    //supabase
+    implementation(libs.supabase.auth)
+    implementation(libs.supabase.postgrest)
+    implementation(libs.ktor.android)
+    implementation("io.github.jan.supabase:auth-kt:0.2.0")
+    implementation(platform("io.github.jan-tennert.supabase:bom:3.4.0"))
+
+    implementation(libs.androidx.navigation.compose)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

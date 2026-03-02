@@ -51,6 +51,10 @@ dependencies {
     implementation(libs.supabase.postgrest)
     implementation(libs.ktor.android)
 
+    // credential
+//    implementation("androidx.credentials:credentials:1.2.0")
+//    implementation("com.google.android.libraries.identity:identity-credential:1.2.0")
+
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
@@ -70,6 +74,8 @@ dependencies {
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation(libs.googleid)
+//    implementation(libs.googleid)
 
     // Testing
     testImplementation(libs.junit)

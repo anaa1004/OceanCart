@@ -1,74 +1,93 @@
 package com.example.oceancart.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.oceancart.R
+import com.example.oceancart.data.model.NavItem
+import com.example.oceancart.ui.theme.Inter
 
 @Composable
 
 fun NavBar(
-    modifier: Modifier = Modifier.Companion
+    selectedIndex: Int,
+    onItemSelected: (Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
+    val items =
+        listOf(
+            NavItem(R.drawable.icons_home, "Beranda"),
+            NavItem(R.drawable.icons_edukasi, "Edukasi"),
+            NavItem(R.drawable.icons_cart, "Keranjang"),
+            NavItem(R.drawable.icons_order, "Pesanan"),
+            NavItem(R.drawable.icons_group, "Profil")
+        )
+
     Card(
         modifier = modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        shape = RoundedCornerShape(50.dp),
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        )
     ) {
+
         Row(
-            modifier = Modifier.Companion
+            modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
 
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.icons_home),
-                    contentDescription = "Home"
-                )
-            }
+            items.forEachIndexed { index, item ->
 
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.icons_search),
-                    contentDescription = "Search"
-                )
-            }
+                val selected = index == selectedIndex
+                val color = if (selected) Color(0xFF2A7FFF) else Color.Gray
 
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.icons_cart),
-                    contentDescription = "Cart"
-                )
-            }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .clickable { onItemSelected(index) }
+                ) {
 
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.icons_order),
-                    contentDescription = "Order"
-                )
-            }
+                    Icon(
+                        painter = painterResource(item.icon),
+                        contentDescription = item.label,
+                        tint = color
+                    )
 
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.icons_group),
-                    contentDescription = "Group"
-                )
-            }
+                    Spacer(modifier = Modifier.height(4.dp))
 
+                    Text(
+                        text = item.label,
+                        fontSize = 12.sp,
+                        fontFamily = Inter,
+                        color = color
+                    )
+                }
+            }
         }
     }
 }

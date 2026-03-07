@@ -1,5 +1,6 @@
 package com.example.oceancart.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -163,6 +165,7 @@ fun ProductDetailScreen(navController: NavController) {
 
                 OutlinedButton(
                     onClick = { showDialog = true },
+                    border = BorderStroke(2.dp, Color(0xff0077B6)),
                     modifier = Modifier.weight(1f)
                 ) {
                     Text("Keranjang")
@@ -172,7 +175,11 @@ fun ProductDetailScreen(navController: NavController) {
                     onClick = {
                         navController.navigate("checkout")
                     },
-                    modifier = Modifier.weight(1f)
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF0098E9)
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
                 ) {
                     Text("Beli Sekarang")
                 }
@@ -248,7 +255,7 @@ fun ProductDetailScreen(navController: NavController) {
 @Composable
 fun TagItem(text: String) {
     Surface(
-        color = Color(0xFFE3F2FD),
+        color = Color(0xFFB0DFF8),
         shape = RoundedCornerShape(20.dp)
     ) {
         Text(

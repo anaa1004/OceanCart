@@ -1,13 +1,16 @@
 package com.example.oceancart.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.oceancart.AuthManager
-import com.example.oceancart.AuthResponse
+import com.example.oceancart.common.model.remote.AuthManager
+//import com.google.android.gms.games.gamessignin.AuthResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import android.content.Context
+import com.example.oceancart.common.model.remote.AuthResponse
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -75,6 +75,8 @@ dependencies {
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     implementation(libs.googleid)
+//    implementation(libs.play.services.games)
+    implementation(libs.androidx.material3)
 //    implementation(libs.googleid)
 
     // Testing

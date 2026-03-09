@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -29,24 +30,25 @@ fun HomeTopBar() {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Text(
-            text = "OCEANCART",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = DarkBlue
+        Icon(
+            painter = painterResource(R.drawable.icons_logo2),
+            contentDescription = null,
+            tint = Color.Unspecified
         )
 
         Row{
             IconButton(onClick = { }) {
                 Icon(
-                    painter = painterResource(R.drawable.profile),
-                    contentDescription = null
+                    painter = painterResource(R.drawable.icons_notification),
+                    contentDescription = null,
+                    tint = Color.Unspecified
                 )
             }
             IconButton(onClick = { }) {
                 Icon(
-                    painter = painterResource(R.drawable.token_chat),
-                    contentDescription = null
+                    painter = painterResource(R.drawable.icons_chat),
+                    contentDescription = null,
+                    tint = Color.Unspecified
                 )
             }
         }

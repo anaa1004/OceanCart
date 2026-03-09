@@ -54,7 +54,8 @@ fun HomeScreen(
 
         NavBar(
             modifier = Modifier
-                .align(BottomCenter)
+                .align(BottomCenter),
+
         )
     }
 }

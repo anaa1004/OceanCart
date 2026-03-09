@@ -77,6 +77,8 @@ dependencies {
     implementation(libs.googleid)
 //    implementation(libs.play.services.games)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.compose.foundation.layout)
 //    implementation(libs.googleid)
 
     // Testing

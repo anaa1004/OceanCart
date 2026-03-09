@@ -1,6 +1,8 @@
 package com.example.oceancart.ui.components
 
+import android.graphics.drawable.Icon
 import android.view.MenuItem
+import com.example.oceancart.ui.components.NavBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,37 +19,49 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Receipt
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.oceancart.R
+import com.example.oceancart.ui.theme.Inter
 
 
 @Composable
 @Preview
-fun ProfilePage (){
+fun ProfilePage() {
+
+    var selectedIndex by remember { mutableStateOf(0) }
+
     Scaffold(
-//        bottomBar = {BottomNavigationBar()}
-    ) {
-        padding ->
+        bottomBar = {
+//            NavBar(
+//                selectedIndex = selectedIndex,
+//                onItemSelected = { index ->
+//                    selectedIndex = index
+//                }
+//            )
+        }
+    ) { padding ->
 
         Column(
             modifier = Modifier
@@ -72,13 +87,64 @@ fun ProfilePage (){
 
 @Composable
 fun HeaderPart (){
-    Box {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp)
+            .background(
+                color = Color(0xFF0077B6),
+                shape = RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp)
+            )
+    ) {
+
+        // Bubble kiri atas
         Box(
             modifier = Modifier
-                .size(150.dp)
-                .offset((-40).dp, (-40).dp)
-                .background(Color(0xFF2A9AD6), CircleShape)
+                .size(220.dp)
+                .offset(x = (-80).dp, y = (-60).dp)
+                .background(
+                    color = Color(0xFF005989),
+                    shape = CircleShape
+                )
         )
+
+        // Bubble kanan
+        Box(
+            modifier = Modifier
+                .size(156.dp)
+                .offset(x = 274.dp, y = (24).dp)
+                .background(
+                    color = Color(0xFF005989),
+                    shape = CircleShape
+                )
+        )
+
+        // Bubble bawah transparan
+        Box(
+            modifier = Modifier
+                .size(125.dp)
+                .offset(x = 250.dp, y = 120.dp)
+                .background(
+                    color = Color(0xffB0D5E8),
+                    shape = CircleShape
+                )
+        )
+
+        // Text header
+        Column(
+            modifier = Modifier
+                .padding(24.dp)
+        ) {
+
+            Text(
+                text = "Profil",
+                color = Color.White,
+                fontSize = 26.sp,
+                fontFamily = Inter,
+                fontWeight = FontWeight.Bold
+            )
+
+        }
     }
 }
 
@@ -90,7 +156,10 @@ fun ProfileCard() {
             .padding(horizontal = 20.dp)
             .offset(y = (-40).dp),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
     ) {
 
         Row(
@@ -111,9 +180,9 @@ fun ProfileCard() {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text("Thomas", fontWeight = FontWeight.Bold)
-                Text("thomas@gmail.com")
-                Text("081234567891")
+                Text("Thomas", fontWeight = FontWeight.Bold, fontFamily = Inter)
+                Text("thomas@gmail.com", fontFamily = Inter, color = Color.Gray)
+                Text("081234567891", fontFamily = Inter, color = Color.Gray)
             }
 
             Icon(Icons.Default.Edit, contentDescription = "Edit")
@@ -126,35 +195,51 @@ fun MenuSection(){
     Text(
         "Aktivitas & Transaksi",
         modifier = Modifier.padding(start = 20.dp, top = 16.dp),
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        fontFamily = Inter,
+        fontSize = 20.sp,
+        color = Color(0xff0077B6)
     )
 
-    MenuItem(Icons.Default.Receipt, "Aktivitas Belanja")
+    MenuItem(R.drawable.aktivitas_belanja, "Aktivitas Belanja")
+
+    Spacer(modifier = Modifier.height(20.dp))
 
     Text(
         "Keamanan dan Privasi",
         modifier = Modifier.padding(start = 20.dp, top = 16.dp),
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        fontFamily = Inter,
+        fontSize = 20.sp,
+        color = Color(0xff0077B6)
     )
 
-    MenuItem(Icons.Default.Lock, "Kata Sandi")
+    MenuItem(R.drawable.lock_sandi, "Kata Sandi")
 
     Text(
         "Pusat Bantuan",
         modifier = Modifier.padding(start = 20.dp, top = 16.dp),
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        fontFamily = Inter,
+        fontSize = 20.sp,
+        color = Color(0xff0077B6)
     )
 
-    MenuItem(Icons.AutoMirrored.Filled.Chat, "Chat Admin")
+    MenuItem(R.drawable.icons_admin, "Chat Admin")
 }
 
 @Composable
-fun MenuItem(icon: ImageVector, title: String) {
+fun MenuItem(icon: Int, title: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 6.dp),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 8.dp)
     ) {
 
         Row(
@@ -164,16 +249,26 @@ fun MenuItem(icon: ImageVector, title: String) {
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Icon(icon, contentDescription = null)
+            Icon(
+                painter = painterResource(icon),
+                contentDescription = null,
+                tint = Color.Black
+            )
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Text(
                 text = title,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                color = MaterialTheme.colorScheme.onSurface,
+                fontFamily = Inter
             )
 
-            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null)
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
@@ -200,8 +295,3 @@ fun LogoutButton() {
         )
     }
 }
-
-//@Composable
-//fun BottomNavigationBar() {
-//    NavigationBarItem(...)
-//}

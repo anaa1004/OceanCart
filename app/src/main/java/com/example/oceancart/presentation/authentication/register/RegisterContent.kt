@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oceancart.common.model.UserRole
@@ -122,4 +123,23 @@ fun RegisterContent(
             }
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun RegisterPreview() {
+
+    RegisterContent(
+        state = RegisterUiState(),
+        onRoleSelected = {},
+        onNameChange = {},
+        onEmailChange = {},
+        onPasswordChange = {},
+        onConfirmPasswordChange = {},
+        onTogglePasswordVisibility = {},
+        onToggleConfirmPasswordVisibility = {},
+        onRegisterClick = {},
+        onNavigateToLogin = {}
+    )
 }

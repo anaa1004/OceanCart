@@ -14,10 +14,12 @@ import io.github.jan.supabase.auth.providers.Google
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.auth.providers.builtin.IDToken
 import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.security.MessageDigest
 import java.util.UUID
+import io.github.jan.supabase.postgrest.postgrest
 
 sealed interface AuthResponse {
     data object Success: AuthResponse
@@ -33,13 +35,37 @@ class AuthManager (
         supabaseKey = "sb_publishable_txhTCBT3GfaKqN8-_bnm2g_Lnf3NyYw"
     ) {
         install(Auth)
+        install(Postgrest)
     }
 
-    fun signUpWithEmail(emailValue: String, passwordValue: String): Flow<AuthResponse> = flow {
+    fun signUpWithEmail(
+        emailValue: String,
+        passwordValue: String,
+        name: String,
+        phoneNomor: String,
+        roles: String
+        ): Flow<AuthResponse> = flow {
         try {
             supabase.auth.signUpWith(Email) {
                 email = emailValue
                 password = passwordValue
+            }
+
+            val userId = supabase.auth.currentUserOrNull()
+
+            if (userId != null) {
+
+                supabase.postgrest["clients"].insert(
+                    mapOf(
+                        "id" to userId.toString(),
+                        "full_name" to name,
+                        "email" to emailValue,
+                        "roles" to roles,
+                        "phone_number" to phoneNomor,
+                        "password" to passwordValue
+                    )
+                )
+
             }
 
             emit(AuthResponse.Success)

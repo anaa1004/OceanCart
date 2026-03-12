@@ -33,7 +33,7 @@ fun RegisterScreen(
         onConfirmPasswordChange = viewModel::onConfirmPasswordChange,
         onToggleConfirmPasswordVisibility = viewModel::onTogglePasswordVisibility,
         onRegisterClick = {
-            viewModel.register(
+            viewModel.regist(
                 onSuccess = onRegisterSuccess
             )
         },

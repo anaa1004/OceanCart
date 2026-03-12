@@ -1,5 +1,6 @@
 package com.example.oceancart.viewmodel
 
+import android.R.attr.phoneNumber
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -11,8 +12,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import android.content.Context
 import com.example.oceancart.common.model.remote.AuthResponse
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 sealed class AuthState {
     object Idle : AuthState()
@@ -28,14 +27,26 @@ class AuthViewModel(private val authManager: AuthManager) : ViewModel() {
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState: StateFlow<AuthState> = _authState
 
-    fun register(email: String, password: String) {
+    fun register(
+        email: String,
+        password: String,
+        nama: String,
+        phone: String,
+        role: String) {
         if (email.isBlank() || password.isBlank()) {
             _authState.value = AuthState.Error("Email dan password tidak boleh kosong")
             return
         }
         viewModelScope.launch {
             _authState.value = AuthState.Loading
-            authManager.signUpWithEmail(email, password).collectLatest { response ->
+            authManager.signUpWithEmail(
+                email,
+                password,
+                nama,
+                phone,
+                role
+                )
+                .collectLatest{ response ->
                 when (response) {
                     is AuthResponse.Success -> _authState.value = AuthState.OtpSent
                     is AuthResponse.Error -> _authState.value = AuthState.Error(

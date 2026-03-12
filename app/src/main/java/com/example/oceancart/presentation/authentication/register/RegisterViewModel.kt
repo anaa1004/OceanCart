@@ -50,7 +50,7 @@ class RegisterViewModel : ViewModel() {
         )
     }
 
-    fun register(onSuccess: () -> Unit) {
+    fun regist(onSuccess: () -> Unit) {
         val name = uiState.name.trim()
         val email = uiState.email.trim()
         val password = uiState.password.trim()

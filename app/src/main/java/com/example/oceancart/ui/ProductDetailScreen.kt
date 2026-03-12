@@ -1,4 +1,4 @@
-package com.example.oceancart.ui.components
+package com.example.oceancart.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -44,18 +44,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.oceancart.R
-import androidx.compose.material3.Text
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.navigation.compose.rememberNavController
+import com.example.oceancart.ui.components.CartDialog
 
-@Preview(showBackground = true)
-@Composable
-fun ProductDetailScreenPreview() {
-    val navController = rememberNavController()
-
-    ProductDetailScreen(navController)
-}
 @Composable
 fun ProductDetailScreen(navController: NavController) {
     var showDialog by remember { mutableStateOf(false) }

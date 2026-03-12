@@ -155,7 +155,7 @@ fun OtpScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text("Tidak menerima kode?", color = Color(0xFF888888), fontSize = 14.sp)
-                TextButton(onClick = { authViewModel.register(email, "") }) {
+                TextButton(onClick = { authViewModel.register(email, "", nama = "", phone = "", role = "") }) {
                     Text("Kirim Ulang", color = Color(0xFF0288D1), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                 }
             }

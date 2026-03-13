@@ -22,7 +22,7 @@ fun OrDivider() {
             modifier = Modifier.weight(1f)
         )
         Text(
-            text = "  OR  ",
+            text = "  Atau  ",
             color = Color.Gray
         )
         HorizontalDivider(

@@ -12,7 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.oceancart.data.model.BannerItem
+import com.example.oceancart.data.model.NavItem
 import com.example.oceancart.data.model.Product
+import com.example.oceancart.data.model.bestSellerProducts
 import com.example.oceancart.data.model.recommendedProducts
 import com.example.oceancart.presentation.home.components.BannerCarousel
 import com.example.oceancart.presentation.home.components.BestSellerSection
@@ -24,7 +28,20 @@ import com.example.oceancart.presentation.home.components.RecommendationSection
 
 @Composable
 
-fun HomeContent() {
+fun HomeContent(
+    banners: List<BannerItem>,
+    navItems: List<NavItem>,
+    recommendedProducts: List<Product>,
+    onSearchClick: () -> Unit,
+    onNotificationClick: () -> Unit,
+    onChatClick: () -> Unit,
+    onProdukDetailClick: () -> Unit,
+    onEdukasiClick: () -> Unit,
+    onKeranjangClick: () -> Unit,
+    onPesananClick: () -> Unit,
+    onProfilClick: () -> Unit,
+    onCategoryClick: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,12 +49,14 @@ fun HomeContent() {
             .padding(bottom = 80.dp)
     ) {
 
-        HomeTopBar()
+        HomeTopBar(
+            onChatClick = onChatClick
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         HomeSearchBar(
-            onClick = { }
+            onSearchClick
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -46,7 +65,7 @@ fun HomeContent() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        CategorySection()
+        CategorySection(onCategoryClick = onCategoryClick)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -54,7 +73,7 @@ fun HomeContent() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        BestSellerSection(recommendedProducts)
+        BestSellerSection(bestSellerProducts)
 
     }
 

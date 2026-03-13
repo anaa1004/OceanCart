@@ -42,7 +42,6 @@ import com.example.oceancart.common.model.remote.AuthResponse
 import com.example.oceancart.ui.components.profilePage.HeaderPart
 
 @Composable
-
 fun LoginContent(
     state: LoginUiState,
     onEmailChange: (String) -> Unit,

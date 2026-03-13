@@ -1,6 +1,7 @@
 package com.example.oceancart.presentation.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,16 +25,19 @@ import com.example.oceancart.ui.theme.DarkBlue
 
 fun CategoryItem(
     icon: Int,
-    title: String
+    title: String,
+    backgroundColor: Color,
+    onClick: () -> Unit
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.clickable{ onClick() }
     ) {
         Box(
             modifier = Modifier
                 .size(64.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(color = DarkBlue),
+                .background(color = backgroundColor),
             contentAlignment = Alignment.Center
         ) {
             Icon(

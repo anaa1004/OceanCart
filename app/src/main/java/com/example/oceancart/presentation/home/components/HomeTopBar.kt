@@ -20,7 +20,9 @@ import com.example.oceancart.ui.theme.DarkBlue
 
 @Composable
 
-fun HomeTopBar() {
+fun HomeTopBar(
+    onChatClick: () -> Unit
+) {
 
     Row(
         modifier = Modifier
@@ -44,7 +46,7 @@ fun HomeTopBar() {
                     tint = Color.Unspecified
                 )
             }
-            IconButton(onClick = { }) {
+            IconButton(onClick = onChatClick) {
                 Icon(
                     painter = painterResource(R.drawable.icons_chat),
                     contentDescription = null,

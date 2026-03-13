@@ -35,22 +35,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-//@Composable
-//fun AppNavigation() {
-//    val navController = rememberNavController()
-//
-//    NavHost(
-//        navController = navController,
-//        startDestination = "edukasi"
-//    ) {
-//
-//        composable("edukasi") {
-//            EdukasiPage(navController)
-//        }
-//
-//        composable("detailArtikel") {
-//            ArtikelPage()
-//        }
-//    }
-//}

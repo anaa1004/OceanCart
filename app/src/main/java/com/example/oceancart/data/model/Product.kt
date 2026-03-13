@@ -12,21 +12,21 @@ data class Product(
 val recommendedProducts = listOf(
     Product(
         "Salmon Segar Grade A",
-        "Rp 50.000",
+        "Rp 50.000/kg",
         R.drawable.image_product1,
         listOf("Protein", "Omega 3")
     ),
 
     Product(
         "Salmon Segar Grade A",
-        "Rp 50.000",
+        "Rp 50.000/kg",
         R.drawable.image_product2,
         listOf("Protein", "Omega 3")
     ),
 
     Product(
         "Salmon Segar Grade A",
-        "Rp 50.000",
+        "Rp 50.000/kg",
         R.drawable.image_product3,
         listOf("Protein", "Omega 3")
     )

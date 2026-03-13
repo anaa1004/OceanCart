@@ -24,7 +24,8 @@ import com.example.oceancart.ui.theme.DarkBlue
 
 fun CategoryItem(
     icon: Int,
-    title: String
+    title: String,
+    backgroundColor: Color
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -33,7 +34,7 @@ fun CategoryItem(
             modifier = Modifier
                 .size(64.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(color = DarkBlue),
+                .background(color = backgroundColor),
             contentAlignment = Alignment.Center
         ) {
             Icon(

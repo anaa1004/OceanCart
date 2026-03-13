@@ -21,8 +21,13 @@ import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.oceancart.ui.theme.Cream
 import com.example.oceancart.ui.theme.DarkBlue
 import com.example.oceancart.ui.theme.Inter
+import com.example.oceancart.ui.theme.LightBlue
+import com.example.oceancart.ui.theme.Orange
+import com.example.oceancart.ui.theme.Purple
+import com.example.oceancart.ui.theme.Red
 
 @Composable
 
@@ -50,25 +55,36 @@ fun CategorySection() {
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_ikan,
-                    "Ikan"
+                    "Ikan",
+                    LightBlue
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_udang,
-                    "Udang"
+                    "Udang",
+                    Orange
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_gurita,
-                    "Gurita"
+                    "Gurita",
+                    Purple
+                )
+            }
+            item {
+                CategoryItem(
+                    com.example.oceancart.R.drawable.icon_lobster,
+                    "Lobster",
+                    Red
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_kerang,
-                    "Kerang"
+                    "Kerang",
+                    Cream
                 )
             }
         }

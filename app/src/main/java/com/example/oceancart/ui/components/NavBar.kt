@@ -30,18 +30,12 @@ import com.example.oceancart.ui.theme.Inter
 @Composable
 
 fun NavBar(
+    items: List<NavItem>,
     selectedIndex: Int,
     onItemSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val items =
-        listOf(
-            NavItem(R.drawable.icons_home, "Beranda"),
-            NavItem(R.drawable.icons_edukasi, "Edukasi"),
-            NavItem(R.drawable.icons_cart, "Keranjang"),
-            NavItem(R.drawable.icons_order, "Pesanan"),
-            NavItem(R.drawable.icons_group, "Profil")
-        )
+
 
     Card(
         modifier = modifier

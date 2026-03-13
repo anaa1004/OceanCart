@@ -9,11 +9,19 @@ import androidx.navigation.NavDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.oceancart.data.model.chatItems
 import com.example.oceancart.presentation.authentication.login.LoginScreen
 import com.example.oceancart.presentation.authentication.login.LoginViewModel
 import com.example.oceancart.presentation.authentication.register.RegisterScreen
 import com.example.oceancart.presentation.authentication.register.RegisterViewModel
+import com.example.oceancart.presentation.cart.CartScreen
+import com.example.oceancart.presentation.cart.CartViewModel
+import com.example.oceancart.presentation.chat.ChatListItem
+import com.example.oceancart.presentation.chat.ChatListScreen
+import com.example.oceancart.presentation.chat.ChatScreen
+import com.example.oceancart.presentation.checkout.CheckoutScreen
 import com.example.oceancart.presentation.home.HomeScreen
+import com.example.oceancart.presentation.search.SearchScreen
 
 @Composable
 
@@ -61,7 +69,70 @@ fun AppNavigation(
             HomeScreen(
                 onLogout = {
                     navController.navigate(Routes.LOGIN)
+                },
+                onSearchClick = {
+                    navController.navigate(Routes.SEARCH)
+                },
+                onNotificationClick = {
+                    navController.navigate(Routes.NOTIFIKASI)
+                },
+                onChatClick = {
+                    navController.navigate(Routes.CHAT)
+                },
+                onProdukDetailClick = {
+                    navController.navigate(Routes.PRODUK_DETAIL)
+                },
+                onEdukasiClick = {
+                    navController.navigate(Routes.EDUKASI)
+                },
+                onKeranjangClick = {
+                    navController.navigate(Routes.KERANJANG) {
+                        launchSingleTop = true
+                        popUpTo(navController.graph.startDestinationId)
+                    }
+                },
+                onPesananClick = {
+                    navController.navigate(Routes.PESANAN)
+                },
+                onProfilClick = {
+                    navController.navigate(Routes.PROFIL)
                 }
+
+            )
+        }
+
+        composable(Routes.CHAT) {
+            ChatListScreen(
+                chatItems = chatItems,
+                onChatClick = {
+                    chat -> navController.navigate("chat_room")
+                }
+            )
+        }
+
+        composable(Routes.SEARCH) {
+            SearchScreen(
+                onBackClick = { navController.popBackStack() }
+            )
+        }
+
+        composable(Routes.CHAT_ROOM) {
+            ChatScreen(
+                onBackClick = { navController.popBackStack() }
+            )
+        }
+
+        composable(Routes.KERANJANG) {
+            CartScreen(
+                onBackClick = { navController.popBackStack() },
+                onCheckOutClick = {navController.navigate(Routes.CHECKOUT)}
+            )
+        }
+
+        composable(Routes.CHECKOUT) {
+            CheckoutScreen(
+                onBackClick = { navController.popBackStack() },
+                navController = navController
             )
         }
 

@@ -2,31 +2,28 @@ package com.example.oceancart.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,221 +34,255 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.oceancart.R
-import com.example.oceancart.ui.components.CartDialog
+import com.example.oceancart.ui.components.productDetail.CartBottomSheet
+import com.example.oceancart.ui.components.productDetail.ProductImageCarousel
+import com.example.oceancart.ui.components.productDetail.ReviewCard
+import com.example.oceancart.ui.components.productDetail.TagItemProduct
+import com.example.oceancart.ui.theme.Inter
+
+
+
+
+
 
 @Composable
 fun ProductDetailScreen(navController: NavController) {
-    var showDialog by remember { mutableStateOf(false) }
-    var count by remember { mutableStateOf(0) }
+    var showKeranjangSheet by remember { mutableStateOf(false) }
+    var showBeliSheet by remember { mutableStateOf(false) }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            // Tombol back
+            item {
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
+                }
+            }
 
-        item {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                IconButton(onClick = {}) {
+            // Carousel gambar
+            item {
+                ProductImageCarousel(
+                    images = listOf(
+                        R.drawable.image_product1,
+                        R.drawable.image_product2,
+                        R.drawable.image_product3)
+                )
+            }
+
+            item {
+                Text(
+                    "Salmon Segar Grade A",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF0077B6),
+                    fontFamily = Inter
+                )
+            }
+
+            item {
+                Text(
+                    "Rp50.000/kg",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontFamily = Inter
+                )
+            }
+
+            // Tag
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TagItemProduct("Vitamin B12")
+                    TagItemProduct("Vitamin D")
+                    TagItemProduct("Selenium")
+                }
+            }
+
+            // Info toko
+            item {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painterResource(R.drawable.toko_profil_icons), null,
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .size(40.dp)
+                            .clip(CircleShape)
+                    )
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                    ) {
+                        Text(
+                            "Raion Perikanan",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = Inter
+                        )
+
+                        Text(
+                            "Kabupaten Malang",
+                            fontSize = 13.sp,
+                            fontFamily = Inter,
+                            color = Color(0xffB0B0B0)
+                        )
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier
+                                    .size(8.dp)
+                                    .background(Color.Green, CircleShape))
+                            Spacer(Modifier.width(4.dp))
+                            Text(
+                                "Online",
+                                fontSize = 11.sp,
+                                color = Color(0xffB0B0B0)
+                            )
+                        }
+                    }
                     Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        painter = painterResource(R.drawable.icons_chat),
+                        null,
+                        tint = Color.Black
                     )
                 }
             }
-        }
 
-        item {
-            Image(
-                painter = painterResource(id = R.drawable.salmon),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .clip(RoundedCornerShape(16.dp)),
-                contentScale = ContentScale.Crop,
-            )
-        }
-
-        item {
-            Text(
-                text = "Salmon Segar Grade A",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-
-        item {
-            Text(
-                text = "Rp50.000/kg",
-                fontSize = 18.sp,
-                color = Color(0xFF1976D2)
-            )
-        }
-
-        item {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-
-                TagItem("Protein")
-                TagItem("Omega 3")
-                TagItem("Vitamin B")
-
-            }
-        }
-
-        item {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.toko_profil),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape),
+            // Deskripsi
+            item {
+                Text(
+                    "Deskripsi Produk",
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF0077B6)
                 )
-
-                Spacer(
-                    modifier = Modifier.width(8.dp)
+            }
+            item {
+                Text(
+                    "Salmon Grade A adalah ikan salmon berkualitas premium dengan daging berwarna oranye cerah, tekstur lembut, dan rasa yang kaya. " +
+                            "Cocok diolah menjadi berbagai hidangan seperti sushi, sashimi, grill, atau masakan seafood lainnya, serta mengandung nutrisi " +
+                            "penting seperti Omega-3, protein, dan vitamin D yang baik untuk kesehatan.",
+                    textAlign = TextAlign.Justify,
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(R.font.inter_semibold))
                 )
-
-                Column {
-                    Text("Toko Makmur Jaya", fontWeight = FontWeight.Bold)
-                    Text("Kabupaten Malang", fontSize = 12.sp)
-                }
             }
-        }
 
-        item {
-            Text(
-                text = "Deskripsi Produk",
-                fontWeight = FontWeight.Bold
-            )
-        }
-
-        item {
-            Text(
-                text = "Salmon Grade A adalah ikan salmon berkualitas premium..."
-            )
-        }
-
-        item {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-
-                OutlinedButton(
-                    onClick = { showDialog = true },
-                    border = BorderStroke(2.dp, Color(0xff0077B6)),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("Keranjang")
-                }
-
-                Button(
-                    onClick = {
-                        navController.navigate("checkout")
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF0098E9)
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                ) {
-                    Text("Beli Sekarang")
-                }
-            }
-        }
-
-            if (showDialog) {
-
-                item {
-                    CartDialog(
-
-                        onDismiss = {
-                            showDialog = false
-                        },
-
-                        onConfirm = {
-
-                            println("Barang ditambahkan ke keranjang")
-
-                            showDialog = false
+            item {
+                Box() {
+                    Column() {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(Icons.Default.Star, null, tint = Color(0xFFFFC107))
+                                Spacer(Modifier.width(4.dp))
+                                Text(
+                                    "Review",
+                                    fontWeight = FontWeight.Bold,
+                                    fontFamily = Inter,
+                                    fontSize = 20.sp,
+                                    color = Color(0xff0077B6))
+                            }
+                            Text("Lihat Semua", color = Color(0xFF0077B6), fontSize = 13.sp)
                         }
 
-                    )
+                        ReviewCard(
+                            namaUser = "Harry Potter",
+                            fotoUser = R.drawable.user_profile,
+                            rating = 4,
+                            komentar = "Salmonnya fresh banget, dagingnya tebal dan lembut. Waktu dimasak rasanya gurih dan tidak amis sama sekali. " +
+                                    "Cocok banget buat sushi atau dimasak simple seperti grilled salmon. Kualitasnya benar-benar terasa premium!"
+                        )
+                    }
                 }
-
             }
 
-        item {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            // Tombol Keranjang & Beli
+            item {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    OutlinedButton(
+                        onClick = { showKeranjangSheet = true },
+                        border = BorderStroke(2.dp, Color(0xFF0077B6)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("Keranjang")
+                    }
 
-                IconButton(onClick = {
-                    if (count > 0) count--
-                }) {
-                    Icon(Icons.Default.Remove, null)
+                    Button(
+                        onClick = { showBeliSheet = true },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0077B6)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("Beli Sekarang")
+                    }
                 }
-
-                Text("$count")
-
-                IconButton(onClick = {
-                    count++
-                }) {
-                    Icon(Icons.Default.Add, null)
-                }
-
             }
         }
 
-        item {
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(4.dp)
-            ) {
-
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-
-                    Text("Review", fontWeight = FontWeight.Bold)
-
-                    Text("⭐⭐⭐⭐⭐")
-
-                    Text("Salmonnya fresh banget...")
-
+        // Bottom Sheet Keranjang
+        if (showKeranjangSheet) {
+            CartBottomSheet(
+                productName = "Salmon Segar Grade A",
+                productImage = R.drawable.image_product1,
+                stok = 50,
+                showBeliSekarang = false,
+                onDismiss = { showKeranjangSheet = false },
+                onBeli = {},
+                onMasukKeranjang = { jumlah ->
+                    println("Ditambahkan ke keranjang: $jumlah")
+                    showKeranjangSheet = false
                 }
+            )
+        }
 
-            }
+        // Bottom Sheet Beli Sekarang
+        if (showBeliSheet) {
+            CartBottomSheet(
+                productName = "Salmon Segar Grade A",
+                productImage = R.drawable.image_product1,
+                stok = 50,
+                showBeliSekarang = true,
+                onDismiss = { showBeliSheet = false },
+                onMasukKeranjang = {},
+                onBeli = { jumlah ->
+                    showBeliSheet = false
+                    navController.navigate("checkout")
+                }
+            )
         }
     }
 }
 
+
+
+
+@Preview(showBackground = true)
 @Composable
-fun TagItem(text: String) {
-    Surface(
-        color = Color(0xFFB0DFF8),
-        shape = RoundedCornerShape(20.dp)
-    ) {
-        Text(
-            text = text,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-            fontSize = 12.sp
-        )
-    }
+fun ProductPreview() {
+    val navController = rememberNavController()
+
+    ProductDetailScreen(navController = navController)
 }

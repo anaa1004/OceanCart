@@ -12,8 +12,13 @@ import com.example.oceancart.presentation.authentication.register.RegisterPrevie
 import com.example.oceancart.presentation.authentication.register.RegisterUiState
 import com.example.oceancart.presentation.home.HomeContent
 import com.example.oceancart.ui.ArtikelPage
+import com.example.oceancart.ui.DetailPesananPage
 import com.example.oceancart.ui.EdukasiPage
-
+import com.example.oceancart.ui.PesananPage
+import com.example.oceancart.ui.ProductDetailScreen
+import com.example.oceancart.ui.ProductPreview
+import com.example.oceancart.ui.ProfilePage
+import com.example.oceancart.ui.components.productDetail.CartBottomSheetPreview
 
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginPreview()
+            CartBottomSheetPreview()
         }
     }
 }

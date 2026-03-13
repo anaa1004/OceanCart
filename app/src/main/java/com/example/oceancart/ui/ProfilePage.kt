@@ -14,11 +14,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.oceancart.ui.components.HeaderPart
-import com.example.oceancart.ui.components.ProfileCard
-import com.example.oceancart.ui.components.MenuSection
-import com.example.oceancart.ui.components.LogoutButton
-
+import com.example.oceancart.ui.components.profilePage.HeaderPart
+import com.example.oceancart.ui.components.profilePage.LogoutButton
+import com.example.oceancart.ui.components.profilePage.MenuSection
+import com.example.oceancart.ui.components.profilePage.ProfileCard
 
 
 @Composable

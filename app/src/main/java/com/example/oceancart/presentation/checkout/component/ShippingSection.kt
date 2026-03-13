@@ -55,7 +55,7 @@ fun ShippingSection(
                 }
             }
 
-            Icon(Icons.Default.KeyboardArrowRight,null)
+            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight,null)
         }
     }
 }

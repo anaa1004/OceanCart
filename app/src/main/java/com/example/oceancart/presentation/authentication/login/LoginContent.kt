@@ -1,7 +1,10 @@
 package com.example.oceancart.presentation.authentication.login
 
+import android.R.attr.onClick
 import android.os.Build
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.oceancart.ui.components.EmailTextField
 import com.example.oceancart.ui.components.LoginButton
 import com.example.oceancart.ui.components.OrDivider
@@ -39,6 +43,7 @@ import com.example.oceancart.ui.theme.Inter
 import kotlinx.coroutines.launch
 import com.example.oceancart.common.model.remote.AuthManager
 import com.example.oceancart.common.model.remote.AuthResponse
+import com.example.oceancart.navigation.Routes
 import com.example.oceancart.ui.components.profilePage.HeaderPart
 
 @Composable
@@ -48,11 +53,15 @@ fun LoginContent(
     onPasswordChange: (String) -> Unit,
     onTogglePasswordVisibility: () -> Unit,
     onLoginClick: () -> Unit,
-    onNavigateToRegister: () -> Unit
+    onNavigateToRegister: () -> Unit,
+    onNavigateToHome: () -> Unit,
+    onGoogleClick: () -> Unit,
+    onFacebookClick: () -> Unit
 ) {
-    val scope = rememberCoroutineScope()
+//    val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val authManager = remember { AuthManager(context) }
+//    val authManager = remember { AuthManager(context) }
+    val navController = rememberNavController()
 
     Box(
         modifier = Modifier
@@ -85,6 +94,9 @@ fun LoginContent(
                     ),
                     modifier = Modifier
                         .padding(top = 24.dp)
+                        .clickable {
+                            Log.d("NAV", "onNavigateToHome dipanggil")
+                            onNavigateToHome() }
                 )
 
                 Spacer(modifier = Modifier.height(50.dp))
@@ -143,28 +155,8 @@ fun LoginContent(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 SocialLoginRow(
-                    onGoogleClick = {
-                        scope.launch {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                authManager.loginGoogleUser().collect { response ->
-                                    when (response) {
-                                        is AuthResponse.Success -> { }
-                                        is AuthResponse.Error -> { }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    onFacebookClick = {
-                        scope.launch {
-                            authManager.loginFacebookUser().collect { response ->
-                                when (response) {
-                                    is AuthResponse.Success -> { /* navigasi ke home */ }
-                                    is AuthResponse.Error -> { /* tampilkan error */ }
-                                }
-                            }
-                        }
-                    },
+                    onGoogleClick = onGoogleClick,
+                    onFacebookClick = onFacebookClick,
                     onWhatsappClick = { }
                 )
 
@@ -207,6 +199,9 @@ fun LoginPreview() {
         onPasswordChange = {},
         onTogglePasswordVisibility = {},
         onLoginClick = {},
-        onNavigateToRegister = {}
+        onNavigateToRegister = {},
+        onNavigateToHome = {},
+        onGoogleClick = {},
+        onFacebookClick = {}
     )
 }

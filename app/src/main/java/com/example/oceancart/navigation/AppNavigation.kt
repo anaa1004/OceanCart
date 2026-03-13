@@ -23,6 +23,7 @@ import com.example.oceancart.presentation.checkout.CheckoutScreen
 import com.example.oceancart.presentation.home.HomeScreen
 import com.example.oceancart.presentation.home.components.CategoryProductScreen
 import com.example.oceancart.presentation.search.SearchScreen
+import com.example.oceancart.ui.EdukasiPage
 
 @Composable
 
@@ -51,6 +52,11 @@ fun AppNavigation(
                 },
                 onNavigateToRegister = {
                     navController.navigate(Routes.REGISTER)
+                },
+                onNavigateToHome = {
+                    navController.navigate(Routes.HOME) {
+                        popUpTo(Routes.LOGIN) { inclusive = true }
+                    }
                 }
             )
         }
@@ -146,6 +152,15 @@ fun AppNavigation(
 
             CategoryProductScreen(category)
         }
+
+        composable(Routes.EDUKASI){
+            EdukasiPage(
+                navController = navController,
+                onNavigateToArtikel = {navController.navigate(Routes.ARTIKEL)}
+            )
+        }
+
+
 
     }
 }

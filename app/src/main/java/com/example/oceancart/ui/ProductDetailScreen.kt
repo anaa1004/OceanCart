@@ -80,8 +80,9 @@ fun ProductDetailScreen(navController: NavController) {
                 ProductImageCarousel(
                     images = listOf(
                         R.drawable.image_product1,
-                        R.drawable.image_product2,
-                        R.drawable.image_product3)
+                        R.drawable.product_image2,
+                        R.drawable.product_image3
+                    )
                 )
             }
 

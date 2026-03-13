@@ -26,11 +26,15 @@ import com.example.oceancart.ui.components.NavBar
 import com.example.oceancart.ui.components.PilihButton
 import com.example.oceancart.ui.theme.Inter
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.oceancart.data.model.navItems
 import com.example.oceancart.ui.components.HeaderBar
+import com.example.oceancart.navigation.Routes
 
 @Composable
 fun EdukasiPage(
@@ -44,10 +48,21 @@ fun EdukasiPage(
     Scaffold(
         bottomBar = {
             NavBar(
+                items = navItems,
                 selectedIndex = selectedIndex,
-                onItemSelected = { index ->
-                    selectedIndex = index
-                }
+                onItemSelected = {
+                        index -> selectedIndex = index
+
+                    when(index) {
+                        0 -> navController.navigate(Routes.HOME)
+                        1 -> {}
+                        2 -> navController.navigate(Routes.KERANJANG)
+                        3 -> navController.navigate(Routes.PESANAN)
+                        4 -> navController.navigate(Routes.PROFIL)
+                    }
+                },
+                modifier = Modifier
+                    .navigationBarsPadding()
             )
         }
     ) { innerPadding ->

@@ -39,6 +39,7 @@ import com.example.oceancart.ui.theme.Inter
 import kotlinx.coroutines.launch
 import com.example.oceancart.common.model.remote.AuthManager
 import com.example.oceancart.common.model.remote.AuthResponse
+import com.example.oceancart.ui.components.profilePage.HeaderPart
 
 @Composable
 
@@ -59,6 +60,9 @@ fun LoginContent(
             .fillMaxSize()
             .background(color = DarkBlue)
     ) {
+
+        HeaderPart()
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()

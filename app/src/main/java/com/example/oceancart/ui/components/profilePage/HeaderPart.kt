@@ -24,7 +24,7 @@ fun HeaderPart (){
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(104.dp)
+            .height(220.dp)
             .background(
                 color = Color(0xFF0077B6),
                 shape = RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp)
@@ -34,7 +34,7 @@ fun HeaderPart (){
         // Bubble kiri atas
         Box(
             modifier = Modifier
-                .size(220.dp)
+                .size(200.dp)
                 .offset(x = (-80).dp, y = (-60).dp)
                 .background(
                     color = Color(0xFF005989),

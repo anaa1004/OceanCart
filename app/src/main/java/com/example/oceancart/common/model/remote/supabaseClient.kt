@@ -2,6 +2,7 @@ package com.example.oceancart.common.model.remote
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
@@ -41,9 +42,13 @@ class AuthManager (
 
     fun loginFacebookUser(): Flow<AuthResponse> = flow {
         try {
+            Log.d("FacebookLogin", "Memulai login Facebook...")
             supabase.auth.signInWith(Facebook)
+            Log.d("FacebookLogin", "Login Facebook berhasil")
             emit(AuthResponse.Success)
         } catch (e: Exception) {
+            Log.e("FacebookLogin", "Login Facebook gagal: ${e.localizedMessage}")
+            Log.e("FacebookLogin", "Cause: ${e.cause}")
             emit(AuthResponse.Error(e.localizedMessage))
         }
     }

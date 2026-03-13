@@ -24,7 +24,8 @@ import com.example.oceancart.ui.components.pesanan.PesananCard
 
 @Composable
 @Preview
-fun DetailPesananPage(){
+fun DetailPesananPage(
+){
     var selectedIndex by remember { mutableStateOf(0) }
     Scaffold(
         bottomBar = {
@@ -45,26 +46,6 @@ fun DetailPesananPage(){
         ) {
             HeaderBar(
                 title = "Pesanan Saya",
-//                leftContent ={
-//                    Icon(
-//                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-//                        contentDescription = "Kembali",
-//                        tint = Color.White
-//                    )
-//                },
-//                rightContent = {
-//                    Box(
-//                        modifier = Modifier
-//                            .background(Color(0xffD9EBF4), RoundedCornerShape(20.dp))
-//                            .padding(horizontal = 12.dp, vertical = 4.dp)
-//                    ) {
-//                        Icon(
-//                            painter = painterResource(R.drawable.icons_dikirim),
-//                            contentDescription = null,
-//                            tint = Color.Unspecified
-//                        )
-//                    }
-//                }
             )
 
             Spacer(modifier = Modifier.height(12.dp))

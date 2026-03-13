@@ -10,6 +10,9 @@ import com.example.oceancart.presentation.authentication.login.LoginScreen
 import com.example.oceancart.presentation.authentication.register.RegisterScreen
 import com.example.oceancart.presentation.home.HomeScreen
 import com.example.oceancart.presentation.authentication.login.LoginUiState
+import com.example.oceancart.ui.EdukasiPage
+import androidx.navigation.NavController
+import com.example.oceancart.ui.ArtikelPage
 
 @Composable
 
@@ -64,5 +67,17 @@ fun AppNavigation(
             )
         }
 
+        composable(Routes.EDUKASI){
+            EdukasiPage(
+                navController = navController,
+                onNavigateToArtikel = {
+                    NavController.navigate(Routes.ARTIKEL)
+                }
+            )
+        }
+
+        composable(Routes.ARTIKEL) {
+            ArtikelPage(navController = navController)
+        }
     }
 }

@@ -51,6 +51,7 @@ import com.example.oceancart.ui.theme.Inter
 
 @Composable
 fun EdukasiCard(
+    onClick: () -> Unit,
     icon: Int,
     title: String,
     description: String

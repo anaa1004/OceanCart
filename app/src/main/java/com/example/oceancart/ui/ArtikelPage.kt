@@ -44,8 +44,9 @@ import io.ktor.http.ContentType
 import com.example.oceancart.ui.components.ArtikelData
 
 @Composable
-@Preview
-fun ArtikelPage() {
+fun ArtikelPage(
+    navController: NavController
+) {
     val navController = rememberNavController()
 
     Scaffold(

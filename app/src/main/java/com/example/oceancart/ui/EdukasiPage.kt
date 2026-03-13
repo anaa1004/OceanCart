@@ -32,7 +32,10 @@ import androidx.navigation.NavController
 import com.example.oceancart.ui.components.HeaderBar
 
 @Composable
-fun EdukasiPage(navController: NavController) {
+fun EdukasiPage(
+    navController: NavController,
+    onNavigateToArtikel: () -> Unit)
+{
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -98,6 +101,7 @@ fun EdukasiPage(navController: NavController) {
                     )
 
                     EdukasiCard(
+                        onClick = { onNavigateToArtikel() },
                         icon = R.drawable.icons_fish,
                         title = "Cara Menerima Ikan Segar dari Nelayan",
                         description = "Panduan saat ikan tiba di restoran"
@@ -111,12 +115,14 @@ fun EdukasiPage(navController: NavController) {
                     )
 
                     EdukasiCard(
+                        onClick = {},
                         icon = R.drawable.icon_gurita,
                         title = "Cara Menjaga Kesegaran Cumi",
                         description = "Panduan cumi segar dan bergizi"
                     )
 
                     EdukasiCard(
+                        onClick = {},
                         icon = R.drawable.icons_cube,
                         title = "Suhu Ideal Penyimpanan Ikan",
                         description = "Beda jenis ikan, beda suhu"

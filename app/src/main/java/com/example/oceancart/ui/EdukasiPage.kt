@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.oceancart.ui.components.HeaderBar
 
 @Composable
@@ -37,6 +38,7 @@ fun EdukasiPage(
     onNavigateToArtikel: () -> Unit)
 {
 
+    val navController = rememberNavController()
     var selectedIndex by remember { mutableStateOf(0) }
 
     Scaffold(

@@ -36,18 +36,6 @@ import androidx.compose.ui.unit.sp
 import com.example.oceancart.R
 import com.example.oceancart.ui.theme.Inter
 
-//@Preview(showBackground = true)
-//@Composable
-//fun EdukasiCardPreview() {
-//    EdukasiCard(
-//        icon = R.drawable.icons_fish,
-//        title = "Cara Menerima Ikan Segar dari Nelayan",
-//        description = "Panduan saat ikan tiba di restoran"
-//    )
-//}
-
-
-
 
 @Composable
 fun EdukasiCard(

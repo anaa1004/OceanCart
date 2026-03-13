@@ -86,7 +86,7 @@ fun CartBottomSheet(
                     }
                 }
 
-                // Info produk (gambar + nama + stok)
+                // Info produk
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(productImage),
@@ -162,7 +162,7 @@ fun CartBottomSheet(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Tombol masukkan keranjang/beli
+                // Tombol keranjang/beli
                 Button(
                     onClick = {
                         if (showBeliSekarang) onBeli(count)
@@ -185,7 +185,6 @@ fun CartBottomSheet(
                 onDismiss = { showSuccessDialog = false },
                 onLihatKeranjang = {
                     showSuccessDialog = false
-                    // navigasi ke keranjang jika diperlukan
                 }
             )
         }

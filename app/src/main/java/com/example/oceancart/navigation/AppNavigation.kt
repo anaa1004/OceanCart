@@ -71,7 +71,7 @@ fun AppNavigation(
             EdukasiPage(
                 navController = navController,
                 onNavigateToArtikel = {
-                    NavController.navigate(Routes.ARTIKEL)
+                    navController.navigate(Routes.ARTIKEL)
                 }
             )
         }

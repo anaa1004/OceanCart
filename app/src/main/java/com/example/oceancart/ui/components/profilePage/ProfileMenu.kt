@@ -32,7 +32,7 @@ import com.example.oceancart.ui.theme.Inter
 fun MenuItem(
     icon: Int,
     title: String,
-    showCard: Boolean = true  // default true agar item lain tidak terpengaruh
+    showCard: Boolean = true
 ) {
     val content: @Composable () -> Unit = {
         Row(
@@ -62,7 +62,6 @@ fun MenuItem(
     }
 
     if (showCard) {
-        // Tampilan asli dengan Card (untuk MenuItem lain)
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -76,7 +75,6 @@ fun MenuItem(
             content()
         }
     } else {
-        // Tanpa Card, hanya Row biasa (untuk MenuSection)
         content()
     }
 }
@@ -95,7 +93,6 @@ fun MenuSection() {
                 color = Color(0xff0077B6)
             )
 
-            // Card pembungkus kedua menu item
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

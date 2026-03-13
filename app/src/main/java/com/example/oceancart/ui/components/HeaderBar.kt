@@ -28,7 +28,7 @@ import com.example.oceancart.ui.theme.Inter
 @Composable
 fun HeaderBar(
     title: String,
-    icon: Int? = null,          // icon di samping title, default null
+    icon: Int? = null,
     leftContent: (@Composable () -> Unit)? = null,  // konten kiri
     rightContent: (@Composable () -> Unit)? = null  // konten kanan
 ) {
@@ -47,7 +47,7 @@ fun HeaderBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            // Konten kiri (tombol back, dll)
+            // konten kiri (tombol back, dll), later
             leftContent?.invoke()
 
             if (leftContent != null) {
@@ -74,7 +74,7 @@ fun HeaderBar(
                 modifier = Modifier.weight(1f)
             )
 
-            // Konten kanan (tombol aksi, dll)
+            // konten kanan (tombol aksi, dll), later
             rightContent?.invoke()
         }
     }

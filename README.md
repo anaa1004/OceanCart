@@ -1,4 +1,4 @@
-![App MockUp] (mockup/mockup.png)
+![](C:\Users\LENOVO\AndroidStudioProjects\OceanCart\mockup\mockup.png) 
 
 OceanCart 🛒
 OceanCart adalah aplikasi marketplace Android yang dibuat menggunakan Kotlin dan Jetpack Compose. 

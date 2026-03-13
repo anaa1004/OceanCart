@@ -21,6 +21,7 @@ import com.example.oceancart.presentation.chat.ChatListScreen
 import com.example.oceancart.presentation.chat.ChatScreen
 import com.example.oceancart.presentation.checkout.CheckoutScreen
 import com.example.oceancart.presentation.home.HomeScreen
+import com.example.oceancart.presentation.home.components.CategoryProductScreen
 import com.example.oceancart.presentation.search.SearchScreen
 
 @Composable
@@ -96,8 +97,10 @@ fun AppNavigation(
                 },
                 onProfilClick = {
                     navController.navigate(Routes.PROFIL)
+                },
+                onCategoryClick = {
+                    category -> navController.navigate("category/$category")
                 }
-
             )
         }
 
@@ -134,6 +137,14 @@ fun AppNavigation(
                 onBackClick = { navController.popBackStack() },
                 navController = navController
             )
+        }
+
+        composable("category/{category}") {
+            backStackEntry ->
+
+            val category = backStackEntry.arguments?.getString("category") ?: ""
+
+            CategoryProductScreen(category)
         }
 
     }

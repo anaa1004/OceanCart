@@ -21,8 +21,10 @@ import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.oceancart.ui.theme.Cream
 import com.example.oceancart.ui.theme.DarkBlue
+import com.example.oceancart.ui.theme.GrayDark
 import com.example.oceancart.ui.theme.Inter
 import com.example.oceancart.ui.theme.LightBlue
 import com.example.oceancart.ui.theme.Orange
@@ -31,7 +33,9 @@ import com.example.oceancart.ui.theme.Red
 
 @Composable
 
-fun CategorySection() {
+fun CategorySection(
+    onCategoryClick: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,35 +60,48 @@ fun CategorySection() {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_ikan,
                     "Ikan",
-                    LightBlue
+                    LightBlue,
+                    onClick = { onCategoryClick("ikan") }
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_udang,
                     "Udang",
-                    Orange
+                    Orange,
+                    onClick = { onCategoryClick("udang") }
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_gurita,
                     "Gurita",
-                    Purple
+                    Purple,
+                    onClick = { onCategoryClick("gurita") }
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_lobster,
                     "Lobster",
-                    Red
+                    Red,
+                    onClick = { onCategoryClick("lobster") }
                 )
             }
             item {
                 CategoryItem(
                     com.example.oceancart.R.drawable.icon_kerang,
                     "Kerang",
-                    Cream
+                    Cream,
+                    onClick = { onCategoryClick("kerang") }
+                )
+            }
+            item {
+                CategoryItem(
+                    com.example.oceancart.R.drawable.icon_squid,
+                    "Kerang",
+                    GrayDark,
+                    onClick = { onCategoryClick("cumi-cumi") }
                 )
             }
         }

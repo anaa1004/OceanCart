@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.oceancart.data.model.BannerItem
 import com.example.oceancart.data.model.NavItem
 import com.example.oceancart.data.model.Product
+import com.example.oceancart.data.model.bestSellerProducts
 import com.example.oceancart.data.model.recommendedProducts
 import com.example.oceancart.presentation.home.components.BannerCarousel
 import com.example.oceancart.presentation.home.components.BestSellerSection
@@ -37,7 +39,8 @@ fun HomeContent(
     onEdukasiClick: () -> Unit,
     onKeranjangClick: () -> Unit,
     onPesananClick: () -> Unit,
-    onProfilClick: () -> Unit
+    onProfilClick: () -> Unit,
+    onCategoryClick: (String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -62,7 +65,7 @@ fun HomeContent(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        CategorySection()
+        CategorySection(onCategoryClick = onCategoryClick)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -70,7 +73,7 @@ fun HomeContent(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        BestSellerSection(recommendedProducts)
+        BestSellerSection(bestSellerProducts)
 
     }
 

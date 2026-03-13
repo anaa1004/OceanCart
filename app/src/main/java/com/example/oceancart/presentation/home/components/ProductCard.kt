@@ -25,6 +25,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.ModifierInfo
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,7 +54,7 @@ fun ProductCard(product: Product) {
                 contentDescription = product.name,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp)
+                    .height(120.dp)
                     .padding(12.dp)
                     .clip(RoundedCornerShape(14.dp)),
                 contentScale = ContentScale.Crop
@@ -61,20 +63,13 @@ fun ProductCard(product: Product) {
             Column(
                 modifier = Modifier
                     .padding(10.dp)
+                    .fillMaxWidth()
             ) {
                 Text(
                     text = product.name,
                     fontFamily = Inter,
-                    fontSize = 14.sp,
-                    color = LightBlue
-                )
-
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Text(
-                    text = product.price,
-                    fontFamily = Inter,
-                    fontSize = 12.sp,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
                     color = LightBlue
                 )
 
@@ -84,9 +79,19 @@ fun ProductCard(product: Product) {
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     product.nutrientTags.forEach {
-                        tag -> NutrientTag(tag)
+                            tag -> NutrientTag(tag)
                     }
                 }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = product.price,
+                    fontFamily = Inter,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = LightBlue
+                )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
@@ -118,7 +123,7 @@ fun ProductCard(product: Product) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Button(
                     onClick = { },

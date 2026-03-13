@@ -23,8 +23,10 @@ import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.oceancart.data.model.banners
 import com.example.oceancart.data.model.navItems
+import com.example.oceancart.data.model.productList
 import com.example.oceancart.presentation.home.components.HomeTopBar
 import com.example.oceancart.ui.components.NavBar
 
@@ -40,6 +42,7 @@ fun HomeScreen(
     onKeranjangClick: () -> Unit,
     onPesananClick: () -> Unit,
     onProfilClick: () -> Unit,
+    onCategoryClick: (String) -> Unit,
     onLogout: () -> Unit
 ) {
     var selectedIndex by remember { mutableStateOf(0) }
@@ -61,7 +64,8 @@ fun HomeScreen(
             onEdukasiClick = onEdukasiClick,
             onKeranjangClick = onKeranjangClick,
             onPesananClick = onPesananClick,
-            onProfilClick = onProfilClick
+            onProfilClick = onProfilClick,
+            onCategoryClick = onCategoryClick
         )
 
         NavBar(

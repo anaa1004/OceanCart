@@ -55,8 +55,8 @@ Material 3
 5. Jika User menekan tombol beli sekarang, maka akan masuk ke page checkout
 
 ▶ Cara Menjalankan Project
-Clone repository
-git clone 
-Buka project di Android Studio
-Jalankan emulator atau hubungkan perangkat Android
-Klik Run App
+1. Clone repository
+2. git clone 
+3. Buka project di Android Studio
+4. Jalankan emulator atau hubungkan perangkat Android
+5. Klik Run App

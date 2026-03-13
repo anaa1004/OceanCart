@@ -1,5 +1,6 @@
 package com.example.oceancart.presentation.authentication.login
 
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,9 +18,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +36,9 @@ import com.example.oceancart.ui.components.PasswordTextField
 import com.example.oceancart.ui.components.SocialLoginRow
 import com.example.oceancart.ui.theme.DarkBlue
 import com.example.oceancart.ui.theme.Inter
+import kotlinx.coroutines.launch
+import com.example.oceancart.common.model.remote.AuthManager
+import com.example.oceancart.common.model.remote.AuthResponse
 
 @Composable
 
@@ -43,6 +50,10 @@ fun LoginContent(
     onLoginClick: () -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val authManager = remember { AuthManager(context) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -129,8 +140,28 @@ fun LoginContent(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 SocialLoginRow(
-                    onGoogleClick = { },
-                    onFacebookClick = { },
+                    onGoogleClick = {
+                        scope.launch {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                                authManager.loginGoogleUser().collect { response ->
+                                    when (response) {
+                                        is AuthResponse.Success -> { }
+                                        is AuthResponse.Error -> { }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    onFacebookClick = {
+                        scope.launch {
+                            authManager.loginFacebookUser().collect { response ->
+                                when (response) {
+                                    is AuthResponse.Success -> { /* navigasi ke home */ }
+                                    is AuthResponse.Error -> { /* tampilkan error */ }
+                                }
+                            }
+                        }
+                    },
                     onWhatsappClick = { }
                 )
 

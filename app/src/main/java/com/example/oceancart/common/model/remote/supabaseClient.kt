@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.flow
 import java.security.MessageDigest
 import java.util.UUID
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.auth.providers.Facebook
 
 sealed interface AuthResponse {
     data object Success: AuthResponse
@@ -36,6 +37,15 @@ class AuthManager (
     ) {
         install(Auth)
         install(Postgrest)
+    }
+
+    fun loginFacebookUser(): Flow<AuthResponse> = flow {
+        try {
+            supabase.auth.signInWith(Facebook)
+            emit(AuthResponse.Success)
+        } catch (e: Exception) {
+            emit(AuthResponse.Error(e.localizedMessage))
+        }
     }
 
     fun signUpWithEmail(
@@ -113,6 +123,7 @@ class AuthManager (
     }
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+
     fun loginGoogleUser(): Flow<AuthResponse> = flow {
         val hashedNonce = createNonce()
 

@@ -12,7 +12,9 @@ import com.example.oceancart.data.model.productList
 
 @Composable
 
-fun CategoryProductScreen(category: String) {
+fun CategoryProductScreen(
+    category: String,
+    onProdukDetailClick: (Product) -> Unit = {}) {
 
     val filteredProducts = productList.filter {
         it.category == category
@@ -25,7 +27,9 @@ fun CategoryProductScreen(category: String) {
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(filteredProducts) {
-            product -> ProductCard(product)
+            product -> ProductCard(
+            product = product,
+            onClick = { onProdukDetailClick(product) })
         }
     }
 }

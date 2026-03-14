@@ -45,9 +45,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.oceancart.R
+import com.example.oceancart.data.model.Product
+import com.example.oceancart.navigation.Routes
 import com.example.oceancart.ui.components.productDetail.CartBottomSheet
 import com.example.oceancart.ui.components.productDetail.ProductImageCarousel
 import com.example.oceancart.ui.components.productDetail.ReviewCard
+import com.example.oceancart.ui.components.productDetail.SuccessNotification
 import com.example.oceancart.ui.components.productDetail.TagItemProduct
 import com.example.oceancart.ui.theme.Inter
 
@@ -57,9 +60,13 @@ import com.example.oceancart.ui.theme.Inter
 
 
 @Composable
-fun ProductDetailScreen(navController: NavController) {
+fun ProductDetailScreen(
+    navController: NavController,
+    product: Product
+) {
     var showKeranjangSheet by remember { mutableStateOf(false) }
     var showBeliSheet by remember { mutableStateOf(false) }
+    var showSuccessDialog by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -88,7 +95,7 @@ fun ProductDetailScreen(navController: NavController) {
 
             item {
                 Text(
-                    "Salmon Segar Grade A",
+                    product.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF0077B6),
@@ -98,7 +105,7 @@ fun ProductDetailScreen(navController: NavController) {
 
             item {
                 Text(
-                    "Rp50.000/kg",
+                    product.price,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
@@ -255,6 +262,7 @@ fun ProductDetailScreen(navController: NavController) {
                 onMasukKeranjang = { jumlah ->
                     println("Ditambahkan ke keranjang: $jumlah")
                     showKeranjangSheet = false
+                    showSuccessDialog = true
                 }
             )
         }
@@ -274,16 +282,27 @@ fun ProductDetailScreen(navController: NavController) {
                 }
             )
         }
+
+        if (showSuccessDialog) {
+            SuccessNotification(
+                message = "Produk berhasil dimasukkan ke dalam keranjang",
+                onDismiss = { showSuccessDialog = false },
+                onLihatKeranjang = {
+                    showSuccessDialog = false
+                    navController.navigate(Routes.KERANJANG)
+                }
+            )
+        }
     }
 }
 
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun ProductPreview() {
-    val navController = rememberNavController()
-
-    ProductDetailScreen(navController = navController)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ProductPreview() {
+//    val navController = rememberNavController()
+//
+//    ProductDetailScreen(navController = navController)
+//}

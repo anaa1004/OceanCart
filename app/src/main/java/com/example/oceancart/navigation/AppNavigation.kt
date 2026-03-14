@@ -9,6 +9,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.oceancart.data.model.Product
 import com.example.oceancart.data.model.chatItems
 import com.example.oceancart.presentation.authentication.login.LoginScreen
 import com.example.oceancart.presentation.authentication.login.LoginViewModel
@@ -23,7 +24,13 @@ import com.example.oceancart.presentation.checkout.CheckoutScreen
 import com.example.oceancart.presentation.home.HomeScreen
 import com.example.oceancart.presentation.home.components.CategoryProductScreen
 import com.example.oceancart.presentation.search.SearchScreen
+import com.example.oceancart.ui.ArtikelPage
+import com.example.oceancart.ui.DetailPesananPage
 import com.example.oceancart.ui.EdukasiPage
+import com.example.oceancart.ui.ProductDetailScreen
+import com.example.oceancart.ui.ProfilePage
+import com.example.oceancart.ui.components.EdukasiCard
+import com.example.oceancart.data.model.recommendedProducts
 
 @Composable
 
@@ -86,8 +93,8 @@ fun AppNavigation(
                 onChatClick = {
                     navController.navigate(Routes.CHAT)
                 },
-                onProdukDetailClick = {
-                    navController.navigate(Routes.PRODUK_DETAIL)
+                onProdukDetailClick = { product ->
+                    navController.navigate(Routes.PRODUK_DETAIL + "/${product.name}")
                 },
                 onEdukasiClick = {
                     navController.navigate(Routes.EDUKASI)
@@ -159,6 +166,36 @@ fun AppNavigation(
                 onNavigateToArtikel = {navController.navigate(Routes.ARTIKEL)}
             )
         }
+
+        composable(Routes.ARTIKEL){
+            ArtikelPage(
+                navController = navController
+            )
+        }
+
+        composable(Routes.PESANAN){
+            DetailPesananPage(
+                navController = navController
+            )
+        }
+
+        composable(Routes.PROFIL){
+            ProfilePage(
+                navController = navController
+            )
+        }
+
+        composable(Routes.PRODUK_DETAIL + "/{productName}") { backStackEntry ->
+            val productName = backStackEntry.arguments?.getString("productName") ?: ""
+            val produk = recommendedProducts.find { it.name == productName }
+            if (produk != null) {
+                ProductDetailScreen(
+                    navController = navController,
+                    product = produk
+                )
+            }
+        }
+
 
 
 

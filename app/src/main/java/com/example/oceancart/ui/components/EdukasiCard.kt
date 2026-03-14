@@ -45,6 +45,7 @@ fun EdukasiCard(
     description: String
 ) {
     Card(
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),

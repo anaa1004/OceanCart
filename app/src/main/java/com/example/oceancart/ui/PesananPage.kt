@@ -7,23 +7,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.oceancart.ui.components.HeaderBar
 
-@Composable
-fun PesananPage (){
-    Scaffold() {
-        innerPadding ->
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            HeaderBar(
-                title = "Pesanan Saya"
-            )
-        }
-    }
-}
+//@Composable
+//fun PesananPage (){
+//    Scaffold() {
+//        innerPadding ->
+//
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(innerPadding)
+//        ) {
+//            HeaderBar(
+//                title = "Pesanan Saya"
+//            )
+//        }
+//    }
+//}
 
 

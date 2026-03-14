@@ -68,7 +68,7 @@ fun MenuItem(
                 .padding(horizontal = 20.dp, vertical = 6.dp),
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
+                containerColor = Color.White
             ),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {

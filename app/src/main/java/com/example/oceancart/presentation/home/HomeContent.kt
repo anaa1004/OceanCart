@@ -35,7 +35,7 @@ fun HomeContent(
     onSearchClick: () -> Unit,
     onNotificationClick: () -> Unit,
     onChatClick: () -> Unit,
-    onProdukDetailClick: () -> Unit,
+    onProdukDetailClick: (Product) -> Unit,
     onEdukasiClick: () -> Unit,
     onKeranjangClick: () -> Unit,
     onPesananClick: () -> Unit,
@@ -69,11 +69,13 @@ fun HomeContent(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        RecommendationSection(recommendedProducts)
+        RecommendationSection(products = recommendedProducts,
+            onProdukDetailClick = onProdukDetailClick)
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        BestSellerSection(bestSellerProducts)
+        BestSellerSection(products = bestSellerProducts,
+            onProdukDetailClick = onProdukDetailClick)
 
     }
 

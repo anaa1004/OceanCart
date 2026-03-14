@@ -47,8 +47,6 @@ import com.example.oceancart.ui.components.ArtikelData
 fun ArtikelPage(
     navController: NavController
 ) {
-    val navController = rememberNavController()
-
     Scaffold(
         bottomBar = {
             Box(

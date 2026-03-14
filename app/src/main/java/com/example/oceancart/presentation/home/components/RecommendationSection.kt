@@ -12,7 +12,8 @@ import com.example.oceancart.data.model.Product
 @Composable
 
 fun RecommendationSection(
-    products: List<Product>
+    products: List<Product>,
+    onProdukDetailClick: (Product) -> Unit
 ) {
 
     Column() {
@@ -23,6 +24,7 @@ fun RecommendationSection(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        ProductHorizontalList(products)
+        ProductHorizontalList( products = products,
+            onProdukDetailClick = onProdukDetailClick)
     }
 }

@@ -75,7 +75,6 @@ fun SuccessNotification(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Gambar centang dari drawable
                 Image(
                     painter = painterResource(R.drawable.icons_success),
                     contentDescription = null,

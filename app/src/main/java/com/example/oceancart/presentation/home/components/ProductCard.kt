@@ -38,9 +38,12 @@ import com.example.oceancart.ui.theme.LightBlue
 
 @Composable
 
-fun ProductCard(product: Product) {
+fun ProductCard(
+    product: Product,
+    onClick: () -> Unit) {
 
     Card(
+        onClick = onClick,
         modifier = Modifier
             .width(172.dp)
             .height(329.dp),
@@ -126,7 +129,7 @@ fun ProductCard(product: Product) {
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Button(
-                    onClick = { },
+                    onClick = onClick,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(42.dp),

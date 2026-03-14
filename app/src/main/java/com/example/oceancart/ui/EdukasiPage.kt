@@ -1,7 +1,10 @@
 package com.example.oceancart.ui
 
 
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +33,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.oceancart.data.model.navItems
@@ -39,124 +43,101 @@ import com.example.oceancart.navigation.Routes
 @Composable
 fun EdukasiPage(
     navController: NavController,
-    onNavigateToArtikel: () -> Unit)
-{
+    onNavigateToArtikel: () -> Unit
+) {
+    var selectedIndex by remember { mutableStateOf(1) }
 
-    val navController = rememberNavController()
-    var selectedIndex by remember { mutableStateOf(0) }
-
-    Scaffold(
-        bottomBar = {
-            NavBar(
-                items = navItems,
-                selectedIndex = selectedIndex,
-                onItemSelected = {
-                        index -> selectedIndex = index
-
-                    when(index) {
-                        0 -> navController.navigate(Routes.HOME)
-                        1 -> {}
-                        2 -> navController.navigate(Routes.KERANJANG)
-                        3 -> navController.navigate(Routes.PESANAN)
-                        4 -> navController.navigate(Routes.PROFIL)
-                    }
-                },
-                modifier = Modifier
-                    .navigationBarsPadding()
-            )
-        }
-    ) { innerPadding ->
-
-        Column(
+    Scaffold { innerPadding ->
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .background(Color.White)
         ) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                HeaderBar(
+                    icon = R.drawable.icons_edukasi,
+                    title = "Edukasi"
+                )
 
-            HeaderBar(
-                icon = R.drawable.icons_edukasi,
-                title = "Edukasi"
-            )
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(3f)
+                        .padding(horizontal = 20.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    item {
+                        Spacer(modifier = Modifier.height(16.dp))
 
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            PilihButton(text = "Semua", selected = true, onClick = { })
+                            Spacer(modifier = Modifier.width(20.dp))
+                            PilihButton(text = "Disimpan", selected = false, onClick = { })
+                        }
 
-                item {
+                        Spacer(modifier = Modifier.height(20.dp))
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                        Text(text = "Wajib Dibaca", fontWeight = FontWeight.SemiBold)
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-
-                        PilihButton(
-                            text = "Semua",
-                            selected = true,
-                            onClick = { }
+                        EdukasiCard(
+                            onClick = {
+                                Log.d("NAV", "EdukasiCard diklik, navigasi ke Artikel")
+                                onNavigateToArtikel()},
+                            icon = R.drawable.icons_fish,
+                            title = "Cara Menerima Ikan Segar dari Nelayan",
+                            description = "Panduan saat ikan tiba di restoran"
                         )
 
-                        Spacer(modifier = Modifier.width(20.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
 
-                        PilihButton(
-                            text = "Disimpan",
-                            selected = false,
-                            onClick = { }
+                        Text(text = "Terbaru", fontWeight = FontWeight.SemiBold)
+
+                        EdukasiCard(
+                            onClick = {},
+                            icon = R.drawable.icon_gurita,
+                            title = "Cara Menjaga Kesegaran Cumi",
+                            description = "Panduan cumi segar dan bergizi"
+                        )
+
+                        EdukasiCard(
+                            onClick = {},
+                            icon = R.drawable.icons_cube,
+                            title = "Suhu Ideal Penyimpanan Ikan",
+                            description = "Beda jenis ikan, beda suhu"
                         )
                     }
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    Text(
-                        text = "Wajib Dibaca",
-                        fontWeight = FontWeight.SemiBold
-                    )
-
-                    EdukasiCard(
-                        onClick = { onNavigateToArtikel() },
-                        icon = R.drawable.icons_fish,
-                        title = "Cara Menerima Ikan Segar dari Nelayan",
-                        description = "Panduan saat ikan tiba di restoran"
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Text(
-                        text = "Terbaru",
-                        fontWeight = FontWeight.SemiBold
-                    )
-
-                    EdukasiCard(
-                        onClick = {},
-                        icon = R.drawable.icon_gurita,
-                        title = "Cara Menjaga Kesegaran Cumi",
-                        description = "Panduan cumi segar dan bergizi"
-                    )
-
-                    EdukasiCard(
-                        onClick = {},
-                        icon = R.drawable.icons_cube,
-                        title = "Suhu Ideal Penyimpanan Ikan",
-                        description = "Beda jenis ikan, beda suhu"
-                    )
                 }
             }
+
+            NavBar(
+                items = navItems,
+                selectedIndex = selectedIndex,
+                onItemSelected = { index ->
+                    selectedIndex = index
+                    val route = when (index) {
+                        0 -> Routes.HOME
+                        1 -> Routes.EDUKASI
+                        2 -> Routes.KERANJANG
+                        3 -> Routes.PESANAN
+                        4 -> Routes.PROFIL
+                        else -> return@NavBar
+                    }
+                    navController.navigate(route) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .navigationBarsPadding()
+            )
         }
     }
-}
-
-
-
-@Preview(showBackground = true, name = "Edukasi")
-@Composable
-fun HeaderBarEdukasiPreview() {
-    HeaderBar(
-        icon = R.drawable.icons_edukasi,
-        title = "Edukasi"
-    )
 }

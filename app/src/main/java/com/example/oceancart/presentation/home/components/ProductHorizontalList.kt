@@ -11,7 +11,8 @@ import com.example.oceancart.data.model.Product
 @Composable
 
 fun ProductHorizontalList(
-    products: List<Product>
+    products: List<Product>,
+    onProdukDetailClick : (Product) -> Unit
 ) {
 
     LazyRow(
@@ -19,7 +20,10 @@ fun ProductHorizontalList(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(products) {
-            product -> ProductCard(product)
+            product -> ProductCard(
+            product = product,
+            onClick = { onProdukDetailClick(product) }
+        )
         }
     }
 }

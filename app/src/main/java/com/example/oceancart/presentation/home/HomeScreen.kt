@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.oceancart.data.model.Product
 import com.example.oceancart.data.model.banners
 import com.example.oceancart.data.model.navItems
 import com.example.oceancart.data.model.productList
@@ -37,7 +38,7 @@ fun HomeScreen(
     onSearchClick: () -> Unit,
     onNotificationClick: () -> Unit,
     onChatClick: () -> Unit,
-    onProdukDetailClick: () -> Unit,
+    onProdukDetailClick: (Product) -> Unit,
     onEdukasiClick: () -> Unit,
     onKeranjangClick: () -> Unit,
     onPesananClick: () -> Unit,

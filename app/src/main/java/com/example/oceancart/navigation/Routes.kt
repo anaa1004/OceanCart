@@ -14,7 +14,6 @@ object Routes {
     const val CHECKOUT = "checkout"
     const val PESANAN = "pesanan"
     const val PROFIL = "profil"
-
     const val ARTIKEL = "artikel"
 
 }
